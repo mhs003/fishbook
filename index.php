@@ -58,22 +58,6 @@
   </body>
   <script src="assets/jquery.js"></script>
   <script>
-  $(document).ready(function(){
-    $('#submit_login').on('click', function(){
-      $('#submit_login').attr('disabled', true);
-      $.post('login.php',
-      {
-        login: true,
-        email: $('#login_email').val(),
-        pass: $('#login_password').val()
-      },
-      function(data, status){
-        if(status == "success"){
-          $('#submit_login').removeAttr('disabled');
-          $('#login_form').submit();
-        }
-      });
-    });
-  });
+  
   </script>
 </html>
